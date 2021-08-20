@@ -1,8 +1,12 @@
+import pickle
+from sklearn import preprocessing
+from sklearn.datasets import load_svmlight_file
 import networkx as nx
 import os
 
 current_path = os.path.dirname(__file__)
 data_folder = os.path.join(current_path, 'data')
+base_features_path = os.path.join(current_path, 'data/GRAPH_features_6.txt')
 
 def convert_graph(file):
     degrees = []
@@ -11,7 +15,6 @@ def convert_graph(file):
     countdegree = 0
     smallest_degree = 1000000
 
-    base_features_path = os.path.join(current_path, 'data/GRAPH_features_6.txt')
     base_features = open(base_features_path, "w")
 
     g = nx.read_gexf(os.path.join(data_folder, file))
@@ -46,3 +49,20 @@ def convert_graph(file):
     del g
     del degrees
     base_features.close
+
+
+def classifier(file):
+    base_features = open(base_features_path, 'rb')
+
+    file, y_test = load_svmlight_file(base_features)
+
+    X_test_dense = file.toarray()
+
+    scaler = preprocessing.MinMaxScaler()
+    X_test_minmax = scaler.fit_transform(X_test_dense)
+
+    model_path = os.path.join(current_path, '../models/pkl_knn_model.pkl')
+    model = pickle.load(open(model_path,'rb'))
+    y_test_pred = model.predict(X_test_minmax)
+
+    return y_test_pred

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
-from . graph_converter import convert_graph
+from . graphs import convert_graph, classifier
 
 def index(request):
     context = {'a':1}
@@ -13,5 +13,6 @@ def predict_graph(request):
     file_path_name = file_system.url(file_path_name)
     context = {'file_path_name':file_path_name}
     convert_graph(file_object.name)
+    print(classifier(file_object.name))
 
     return render(request, 'index.html', context)
