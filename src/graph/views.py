@@ -15,7 +15,7 @@ def predict_graph(request):
     prediction = classifier(file_object.name)[0]
 
     if prediction < 1:
-        predition_text = 'NOR Power-Law'
+        predition_text = 'NOT Power-Law'
     else:
         predition_text = 'Power-Law'
 

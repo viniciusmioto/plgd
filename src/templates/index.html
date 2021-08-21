@@ -4,10 +4,31 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PLGD</title>
+        {% load static %}
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     
+       <title>PLGD</title>
     </head>
     <body>
-        <h1>PLGD</h1>
+
+ 
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">PLGD</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+        
         <h2>Upload Graph for Classification</h2>
     
         <form method="post" enctype="multipart/form-data" action="predict_graph">
@@ -16,13 +37,19 @@
         <div class="col-md-4 col-sm-4">
             <label for="fname">Upload Image File Here:</label>
         </div> 
-        <input name="file_path" type="file">
+        <a class="waves-effect waves-light btn"><input name="file_path" type="file" value="">
+        <i class="material-icons right">file_upload
+</i>
+        </a>
 
-        <input type="submit" value="Submit" >
-
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+            <input type="submit" value="" >
+        </button>
+        
         <h2>The classification of the graph is {{prediction}}</h2>
 
         </form>
-
     </body>
+
 </html>
