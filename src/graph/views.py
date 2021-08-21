@@ -22,3 +22,7 @@ def predict_graph(request):
     context = {'file_path_name':file_path_name, 'prediction': predition_text}
 
     return render(request, 'index.html', context)
+
+def models(request):
+    context = {'a':1}
+    return render(request, 'models.html', context)

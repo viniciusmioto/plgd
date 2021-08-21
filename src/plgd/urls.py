@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('^$', views.index, name='homepage'),
     url('predict_graph', views.predict_graph, name='predict_graph'),
+    url('models', views.models, name='models'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

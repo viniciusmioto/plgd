@@ -12,10 +12,9 @@
 
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-     
+
        <title>PLGD</title>
     </head>
-    
     <body>
         <header>
             <nav>
@@ -24,7 +23,7 @@
                     <div class="nav-wrapper">
                         <a href="#!" class="brand-logo">PLGD</a>
                         <ul class="right hide-on-med-and-down">
-                        <li><a href="sass.html">Sass</a></li>
+                        <li><a href="models.html">Sass</a></li>
                         <li><a href="badges.html">Components</a></li>
                         </ul>
                     </div>
@@ -33,23 +32,25 @@
             </nav>
         </header>
         
-        <h4>Upload Graph for Classification</h4>
     
-        <form method="post" enctype="multipart/form-data" action="predict_graph">
-    
+        <form class="md-form" method="post" enctype="multipart/form-data" action="predict_graph">
+
+        <h5>Upload Graph for Classification</h4>
+
         {% csrf_token %}
-        <div class="col-md-4 col-sm-4">
-            <label for="fname">Upload Image File Here:</label>
-        </div> 
 
-        <a class="waves-effect waves-light btn"><input name="file_path" type="file" value="">
-            <i class="material-icons right">file_upload</i>
-        </a>
+        <div class="file-field">
+            <div class="btn btn-primary btn-sm float-left">
+                <span>Choose file</span>
+                <input name="file_path" type="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload your file">
+            </div>
+        </div>
 
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
-            <input type="submit" value="" >
-        </button>
+        <input class="btn btn-primary" type="submit" value="Submit" >
+
 
         <blockquote>
             Graph classification is {{prediction}}    
@@ -58,18 +59,15 @@
         </form>
     </body>
 
-    <script>
+    <style>
+        form {
+            padding:1em;
+        }
 
-    $(".dropdown-trigger").dropdown();
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems, options);
-        });
+        h5 {
+            padding-bottom: 10px;
+        }
 
-        $(document).ready(function(){
-            $('.sidenav').sidenav();
-        });
-    </script>
+    </style>
 
 </html>
