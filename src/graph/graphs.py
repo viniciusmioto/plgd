@@ -5,8 +5,8 @@ import networkx as nx
 import os
 
 current_path = os.path.dirname(__file__)
-data_folder = os.path.join(current_path, 'data')
-base_features_path = os.path.join(current_path, 'data/GRAPH_features_6.txt')
+data_folder = os.path.join(current_path, '../data')
+base_features_path = os.path.join(current_path, '../data/GRAPH_features_6.txt')
 
 # convert graph to a features vector
 def convert_graph(file):

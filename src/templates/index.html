@@ -1,73 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% load static %}
-        <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
 
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-       <title>PLGD</title>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <div class="navbar-fixed">
-                    <nav>
-                    <div class="nav-wrapper">
-                        <a href="/" class="brand-logo">PLGD</a>
-                        <ul class="right hide-on-med-and-down">
-                        <li><a href="models.html">Models</a></li>
-                        <li><a href="about.html">About</a></li>
-                        </ul>
-                    </div>
-                    </nav>
-                </div>
-            </nav>
-        </header>
-        
-    
-        <form class="md-form" method="post" enctype="multipart/form-data" action="predict_graph">
 
-        <h5>Upload Graph for Classification</h4>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <title>PLGD</title>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">PLGD</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./models.html">Models</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+</head>
+
+<body>
+    <form class="md-form" method="post" enctype="multipart/form-data" action="predict_graph">
+
+        <h5>Upload graph file for classification</h5>
 
         {% csrf_token %}
 
-        <div class="file-field">
-            <div class="btn btn-primary btn-sm float-left">
-                <span>Choose file</span>
-                <input name="file_path" type="file">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">
+                    <span class="material-icons">
+                        file_upload
+                    </span>
+                    <input id="my-file-selector" type="file" style="display:none;"
+                        onchange="$('#upload-file-info').val($(this).val());">
+                </span>
             </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="Upload your file">
+            <div class="custom-file">
+                <input name="file_path" type="file" class="custom-file-input" id="inputGroupFile01"
+                    onchange="$('#upload-file-info').val($(this).val());">
+
+                <label class="custom-file-label" for="inputGroupFile01">
+                    choose a .gexf file
+                </label>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="Submit">
+            <div class="input-group">
+                <input style="display:none;" onchange="$('#upload-file-info').val($(this).val());">
+                <input type="text" class="form-control" id="upload-file-info" readonly>
             </div>
         </div>
 
-        <input class="btn btn-primary" type="submit" value="Submit" >
+        <p>
+            Graph classification is {{prediction}}
+        </p>
 
+    </form>
+</body>
 
-        <blockquote>
-            Graph classification is {{prediction}}    
-        </blockquote>
-        
-        </form>
-    </body>
+<style>
+    form {
+        padding: 2.2em;
+    }
 
-    <style>
-        form {
-            padding:2em;
-        }
-
-        h5 {
-            padding-bottom: 10px;
-        }
-
-    </style>
+    h5 {
+        padding-bottom: 10px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 
 </html>
