@@ -8,6 +8,7 @@ current_path = os.path.dirname(__file__)
 data_folder = os.path.join(current_path, 'data')
 base_features_path = os.path.join(current_path, 'data/GRAPH_features_6.txt')
 
+# convert graph to a features vector
 def convert_graph(file):
     degrees = []
 
@@ -27,7 +28,7 @@ def convert_graph(file):
 
     mean = float(countdegree)/float(len(g.nodes()))
 
-    count1, count2, count3 = 0, 0, 0
+    count1, count2 = 0, 0
     for i in g.nodes():
         if g.degree(i) == largest_degree:
             count1 += 1
@@ -50,8 +51,8 @@ def convert_graph(file):
     del degrees
     base_features.close
 
-
-def classifier(file):
+# predict graph classification with a ML model
+def classifier():
     base_features = open(base_features_path, 'rb')
 
     file, y_test = load_svmlight_file(base_features)
@@ -61,7 +62,7 @@ def classifier(file):
     scaler = preprocessing.MinMaxScaler()
     X_test_minmax = scaler.fit_transform(X_test_dense)
 
-    model_path = os.path.join(current_path, '../models/pkl_knn_model.pkl')
+    model_path = os.path.join(current_path, '../models/pkl_random_forest_model.pkl')
     model = pickle.load(open(model_path,'rb'))
     y_test_pred = model.predict(X_test_minmax)
 
