@@ -128,5 +128,5 @@ STATICT_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = './graph/data/'
-MEDIA_ROOT = os.path.join(BASE_DIR, './graph/data')
+MEDIA_URL = './data/'
+MEDIA_ROOT = os.path.join(BASE_DIR, './data')
