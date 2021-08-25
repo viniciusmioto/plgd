@@ -10,6 +10,7 @@ urlpatterns = [
     url('^$', views.index, name='homepage'),
     url('predict_graph', views.predict_graph, name='predict_graph'),
     url('models', views.models, name='models'),
+    url('about', views.about, name='about'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
