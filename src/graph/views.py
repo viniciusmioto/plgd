@@ -31,3 +31,7 @@ def predict_graph(request):
 def models(request):
     context = {'a':1}
     return render(request, 'models.html', context)
+
+def about(request):
+    context = {'a':1}
+    return render(request, 'about.html', context)
