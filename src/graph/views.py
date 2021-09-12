@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
-from . graphs import convert_graph, classifier
+from . graphs import get_graph_features, classifier
 
 def index(request):
     context = {'a':1}
@@ -15,14 +15,11 @@ def predict_graph(request):
     file_path_name = file_system.url(file_path_name)
 
     # convert graph to a features vector
-    convert_graph(file_object.name)
+    graph_features = get_graph_features(file_object.name)
 
     # prediction output
-    prediction = classifier()
-    if prediction[0] < 1:
-        prediction_text = 'NOT Power-Law'
-    else:
-        prediction_text = 'Power-Law'
+    prediction = classifier(graph_features)
+    prediction_text = 'Power-Law' if prediction[0] == 1 else 'NOT Power-Law'
 
     context = {'file_path_name':file_path_name, 'prediction': prediction_text}
 
