@@ -19,10 +19,7 @@ def predict_graph(request):
 
     # prediction output
     prediction = classifier(graph_features)
-    if prediction[0] < 1:
-        prediction_text = 'NOT Power-Law'
-    else:
-        prediction_text = 'Power-Law'
+    prediction_text = 'Power-Law' if prediction[0] == 1 else 'NOT Power-Law'
 
     context = {'file_path_name':file_path_name, 'prediction': prediction_text}
 
