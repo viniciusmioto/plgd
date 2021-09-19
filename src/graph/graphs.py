@@ -5,9 +5,8 @@ import statistics as sts
 
 current_path = os.path.dirname(__file__)
 data_folder = os.path.join(current_path, '../data')
-base_features_path = os.path.join(current_path, '../data/GRAPH_features_6.txt')
 
-# convert graph to a features vector
+# convert graph to a features vector with six features
 def get_graph_features(file):
 
     graph = nx.read_gexf(os.path.join(data_folder, file))
