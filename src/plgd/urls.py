@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('^$', views.index, name='homepage'),
     url('predict_graph', views.predict_graph, name='predict_graph'),
+    url('find_model', views.find_model, name='find_model'),
     url('models', views.models, name='models'),
     url('about', views.about, name='about'),
 ]

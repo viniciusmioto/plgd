@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
+    {% load crispy_forms_tags %}
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -45,38 +46,26 @@
         <h5>Upload graph file for classification</h5>
 
         {% csrf_token %}
-
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupFileAddon01">
-                    <span class="material-icons">
-                        file_upload
-                    </span>
-                    <input id="my-file-selector" type="file" style="display:none;"
-                        onchange="$('#upload-file-info').val($(this).val());">
-                </span>
-            </div>
-            <div class="custom-file">
-                <input name="file_path" type="file" class="custom-file-input" id="inputGroupFile01"
-                    onchange="$('#upload-file-info').val($(this).val());">
-
-                <label class="custom-file-label" for="inputGroupFile01">
-                    choose a .gexf file
-                </label>
-            </div>
-
-            <input class="btn btn-primary" type="submit" value="Submit">
-            <div class="input-group">
-                <input style="display:none;" onchange="$('#upload-file-info').val($(this).val());">
-                <input type="text" class="form-control" id="upload-file-info" readonly>
-            </div>
-        </div>
-
-        <p>
-            Graph classification is {{prediction}}
-        </p>
+        {{ models_form|crispy }}
+        <button type="submit" class="btn btn-primary mt-3">submit</button>
 
     </form>
+
+    <div class="mt-2 ml-5">
+        <p>
+            Result 
+            {% if not prediction %}
+                <span class="badge badge-pill badge-secondary ml-4">No Data</span>
+            {% else %}
+                {% if prediction == 1 %}
+                    <span class="badge badge-pill badge-success ml-4">Power-Law</span>
+                {% elif prediction == 1 %}
+                    <span class="badge badge-pill badge-danger ml-4">Power-Law</span>
+                {% endif %}
+            {% endif %}
+        </p>
+    </div>
+
 </body>
 
 <style>
