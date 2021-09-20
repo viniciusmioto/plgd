@@ -12,4 +12,4 @@ MODEL_CHOICES = (
 
 class ModelsForm(forms.Form):
     model_type = forms.ChoiceField(choices=MODEL_CHOICES)
-    graph_file = forms.FileField()
+    graph_file = forms.FileField(allow_empty_file=False)

@@ -53,16 +53,13 @@
 
     <div class="mt-2 ml-5">
         <p>
-            Result 
-            {% if not prediction %}
-                <span class="badge badge-pill badge-secondary ml-4">No Data</span>
-            {% else %}
-                {% if prediction == 1 %}
-                    <span class="badge badge-pill badge-success ml-4">Power-Law</span>
-                {% elif prediction == 1 %}
-                    <span class="badge badge-pill badge-danger ml-4">Power-Law</span>
-                {% endif %}
+            Result
+            {% if prediction == 1 %}
+            <span class="badge badge-pill badge-success ml-4">Power-Law</span>
+            {% elif prediction == 0 %}
+            <span class="badge badge-pill badge-danger ml-4">Not-Law</span>
             {% endif %}
+
         </p>
     </div>
 

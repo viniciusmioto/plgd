@@ -12,22 +12,13 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-def find_model(request):
-    context = {'a':1}
-    model_type = request.POST.get('model_type')
-    graph_file = request.FILES['graph_file']
-
-    print(model_type)
-    print(graph_file)
-
-    return render(request, 'index.html', context)
-
 def predict_graph(request):
     
-    # save graph file in data folder
+    # request data from the forms
     model_type = request.POST.get('model_type')
     graph_file = request.FILES['graph_file']
     
+    # save data in data folder
     file_system = FileSystemStorage()
     file_path_name = file_system.save(graph_file.name, graph_file)
     file_path_name = file_system.url(file_path_name)
@@ -36,12 +27,12 @@ def predict_graph(request):
     graph_features = get_graph_features(graph_file.name)
 
     # prediction output
-    prediction = classifier(graph_features)
+    prediction = classifier(graph_features, model_type)
 
     context = {
         'file_path_name':file_path_name, 
         'prediction': prediction,
-        'model_type':model_type,
+        'model_type': model_type,
     }
 
     return render(request, 'index.html', context)
