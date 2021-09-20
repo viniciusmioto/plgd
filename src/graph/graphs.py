@@ -22,11 +22,20 @@ def get_graph_features(file):
 
 
 # predict graph classification with a ML model
-def classifier(graph_features):
+def classifier(graph_features, model_type):
 
-    model_path = os.path.join(current_path, '../models/knn_model.pkl')
+    if model_type == '#1':
+        model_path = os.path.join(current_path, '../models/knn_model.pkl')
+    elif model_type == '#2':
+        model_path = os.path.join(current_path, '../models/svm_model.pkl')
+    elif model_type == '#3':
+        model_path = os.path.join(current_path, '../models/forest_model.pkl')
+    elif model_type == '#4':
+        model_path = os.path.join(current_path, '../models/grad_boost_model.pkl')
+    else:
+        print('No model_type specified!')
+
     model = pickle.load(open(model_path,'rb'))
-
     prediction = model.predict(graph_features)
 
     return prediction

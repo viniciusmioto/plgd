@@ -1,91 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
+{% load static %}
+{% load crispy_forms_tags %}
+{% include 'base.html' %}
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    {% load crispy_forms_tags %}
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }} styles.css">
-
     <title>PLGD</title>
-
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">PLGD</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./models.html">Models</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./about.hml">About</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
 </head>
 
 <body>
-    <form class="md-form" method="post" enctype="multipart/form-data" action="predict_graph">
+    <div class="ml-5 mt-2">
+        <form class="md-form" method="post" enctype="multipart/form-data" action="predict_graph">
 
-        <h5>Upload graph file for classification</h5>
-
-        {% csrf_token %}
-        {{ models_form|crispy }}
-        <button type="submit" class="btn btn-primary mt-3">submit</button>
-
-    </form>
-
-    <div class="mt-2 ml-5">
-        <p>
-            Result 
-            {% if not prediction %}
-                <span class="badge badge-pill badge-secondary ml-4">No Data</span>
-            {% else %}
-                {% if prediction == 1 %}
-                    <span class="badge badge-pill badge-success ml-4">Power-Law</span>
-                {% elif prediction == 1 %}
-                    <span class="badge badge-pill badge-danger ml-4">Power-Law</span>
-                {% endif %}
-            {% endif %}
-        </p>
+            <h5>Upload graph file for classification</h5>
+    
+            {% csrf_token %}
+            {{ models_form|crispy }}
+            <button type="submit" class="btn btn-primary mt-3">submit</button>
+        </form>
     </div>
-
 </body>
-
-<style>
-    form {
-        padding: 2.2em;
-    }
-
-    h5 {
-        padding-bottom: 10px;
-    }
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
 
 </html>

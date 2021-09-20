@@ -1,0 +1,23 @@
+{% include 'base.html' %}
+
+<head>
+    <title>Results</title>
+</head>
+
+<body>
+    <div class="mt-2 ml-5">
+        <p>
+            Result
+
+            {% if prediction == 1 %}
+            <span class="badge badge-pill badge-success ml-4">Power-Law</span>
+            {% elif prediction == 1 %}
+            <span class="badge badge-pill badge-danger ml-4">Power-Law</span>
+            {% endif %}
+        </p>
+
+        <a href="/" class="btn btn-primary" role="button" aria-pressed="true">Classify Another Graph</a>
+    </div>
+</body>
+
+</html>

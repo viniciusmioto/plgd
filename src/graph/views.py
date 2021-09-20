@@ -12,16 +12,6 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-def find_model(request):
-    context = {'a':1}
-    model_type = request.POST.get('model_type')
-    graph_file = request.FILES['graph_file']
-
-    print(model_type)
-    print(graph_file)
-
-    return render(request, 'index.html', context)
-
 def predict_graph(request):
     
     # save graph file in data folder
@@ -36,7 +26,7 @@ def predict_graph(request):
     graph_features = get_graph_features(graph_file.name)
 
     # prediction output
-    prediction = classifier(graph_features)
+    prediction = classifier(graph_features, model_type)
 
     context = {
         'file_path_name':file_path_name, 
@@ -44,7 +34,7 @@ def predict_graph(request):
         'model_type':model_type,
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'results.html', context)
 
 def models(request):
     context = {'a':1}
